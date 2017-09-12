@@ -197,3 +197,17 @@ if __name__ == '__main__':
     # Note: Validation is ~ 10X slower. For the project consider using a small
     # sample of the map when validating.
     process_map(OSM_PATH, validate=True)
+
+    
+    # Notes:
+    # elif LOWER_COLON.match(child.attrib["k"]):
+                    #node_tag["type"] = child.attrib["k"].split(":", 1)[0]
+                    #node_tag["key"] = child.attrib["k"].split(":", 1)[1]
+                    #node_tag["id"] = element.attrib["id"]
+
+                    # use cleaning function:
+                    #if child.attrib["k"] == 'addr:street':
+                    #    node_tag["value"] = update_name(child.attrib["v"], mapping)
+                    # otherwise:
+                    #else:
+                    #    node_tag["value"] = child.attrib["v"]
