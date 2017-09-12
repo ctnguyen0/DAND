@@ -55,7 +55,7 @@ def shape_element(element, node_attr_fields = NODE_FIELDS, way_attr_fields = WAY
             tag = {}
             if PROBLEMCHARS.search(child.attrib["k"]):
                 continue
-        
+            #code below referenced from Puwenning GitHub repository, https://github.com/puwenning/puwenning.github.io.
             elif LOWER_COLON.search(child.attrib["k"]):
                 tag_type = child.attrib["k"].split(':',1)[0]
                 tag_key = child.attrib["k"].split(':',1)[1]
