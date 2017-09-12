@@ -1,0 +1,41 @@
+#Count number of nodes.
+SELECT COUNT(*) FROM Nodes;
+
+#Count number of ways.
+SELECT COUNT(*) FROM Ways;
+
+#Count number of unique users.
+SELECT COUNT(DISTINCT(e.uid))
+FROM (SELECT uid FROM Nodes UNION ALL SELECT uid FROM Ways) e;
+   
+# List top 10 contributing users.
+SELECT e.user, COUNT(*) as num
+FROM (SELECT user FROM Nodes UNION ALL SELECT user FROM Ways) e
+GROUP BY e.user
+ORDER BY num DESC
+LIMIT(10);
+
+# Number of users with only 1 contribution.
+SELECT COUNT(*) FROM
+(SELECT e.user, COUNT(*) as num
+FROM(SELECT user FROM Nodes UNION ALL SELECT user FROM Ways) e
+GROUP BY e.user
+HAVING num = 1) u;
+
+# Top 10 most visited areas.
+SELECT value, COUNT(*) as num
+FROM Nodes_Tags
+WHERE key = 'amenity'
+GROUP BY value
+ORDER BY num DESC
+LIMIT 10;
+   
+# Top restaurants.
+SELECT Nodes_Tags.value, COUNT(*) as num
+FROM Nodes_Tags
+JOIN (SELECT DISTINCT(id) FROM Nodes_Tags WHERE value = 'restaurant') i
+WHERE Nodes_Tags.id = i.id
+AND Nodes_Tags.key = 'name'
+GROUP BY Nodes_Tags.value
+ORDER BY num DESC
+LIMIT(15);
