@@ -1,6 +1,6 @@
 sqlite> CREATE TABLE Nodes
    ...> (
-   ...> id INTEGER PRIMARY KEY,
+   ...> id TEXT PRIMARY KEY,
    ...> lat REAL,
    ...> lon REAL,
    ...> user TEXT,
@@ -12,7 +12,7 @@ sqlite> CREATE TABLE Nodes
    
    
    sqlite> CREATE TABLE Nodes_Tags(
-   ...> id INTEGER,
+   ...> id TEXT,
    ...> key TEXT,
    ...> value TEXT,
    ...> type TEXT,
@@ -21,7 +21,7 @@ sqlite> CREATE TABLE Nodes
    
    
    sqlite> CREATE TABLE Ways(
-   ...> id INTEGER PRIMARY KEY,
+   ...> id TEXT PRIMARY KEY,
    ...> user TEXT,
    ...> uid INTEGER,
    ...> version INTEGER,
@@ -32,7 +32,7 @@ sqlite> CREATE TABLE Nodes
    
    
    sqlite> CREATE TABLE Way_Nodes(
-   ...> id INTEGER,
+   ...> id TEXT,
    ...> node_id INTEGER,
    ...> position INTEGER,
    ...> FOREIGN KEY(id) REFERENCES Nodes(id)
@@ -41,7 +41,7 @@ sqlite> CREATE TABLE Nodes
    
    
    sqlite> CREATE TABLE Way_Tags(
-   ...> id INTEGER,
+   ...> id TEXT,
    ...> key TEXT,
    ...> value TEXT,
    ...> type TEXT,
