@@ -1,0 +1,49 @@
+sqlite> CREATE TABLE Nodes
+   ...> (
+   ...> id INTEGER PRIMARY KEY,
+   ...> lat REAL,
+   ...> lon REAL,
+   ...> user TEXT,
+   ...> uid INTEGER,
+   ...> version INTEGER,
+   ...> changeset INTEGER,
+   ...> timestamp DATETIME
+   );
+   
+   
+   sqlite> CREATE TABLE Nodes_Tags(
+   ...> id INTEGER,
+   ...> key TEXT,
+   ...> value TEXT,
+   ...> type TEXT,
+   ...> FOREIGN KEY(id) REFERENCES Nodes(id)
+   ...> );
+   
+   
+   sqlite> CREATE TABLE Ways(
+   ...> id INTEGER PRIMARY KEY,
+   ...> user TEXT,
+   ...> uid INTEGER,
+   ...> version INTEGER,
+   ...> changeset INTEGER,
+   ...> timestamp DATETIME
+   ...> );
+   
+   
+   
+   sqlite> CREATE TABLE Way_Nodes(
+   ...> id INTEGER,
+   ...> node_id INTEGER,
+   ...> position INTEGER,
+   ...> FOREIGN KEY(id) REFERENCES Nodes(id)
+   ...> );
+   
+   
+   
+   sqlite> CREATE TABLE Way_Tags(
+   ...> id INTEGER,
+   ...> key TEXT,
+   ...> value TEXT,
+   ...> type TEXT,
+   ...> FOREIGN KEY(id) REFERENCES Ways(id)
+   ...> );
