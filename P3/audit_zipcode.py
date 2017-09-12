@@ -1,6 +1,6 @@
 def audit_zipcode(invalid_zipcodes, zipcode):
     twoDigits = zipcode[0:2]
-    
+    # code below referenced from Puwenning GitHub repository.  https://github.com/puwenning/puwenning.github.io
     if twoDigits != 94 or not twoDigits.isdigit():
         invalid_zipcodes[twoDigits].add(zipcode)
         
@@ -26,6 +26,7 @@ def update_zip(zipcode):
     """(str) -> str
     Return 5 digit zipcodes.
     """
+    # code below referenced from Puwenning GitHub repository.  https://github.com/puwenning/puwenning.github.io
     zipChar = re.findall('[a-zA-Z]*', zipcode)
     if zipChar:
         zipChar = zipChar[0]
