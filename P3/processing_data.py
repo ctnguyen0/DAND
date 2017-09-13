@@ -59,16 +59,26 @@ def shape_element(element, node_attr_fields = NODE_FIELDS, way_attr_fields = WAY
             elif LOWER_COLON.search(child.attrib["k"]):
                 tag_type = child.attrib["k"].split(':',1)[0]
                 tag_key = child.attrib["k"].split(':',1)[1]
+                tag["id"] = element.attrib["id"]
                 tag["key"] = tag_key
                 if tag_type:
                     tag["type"] = tag_type
                 else:
                     tag["type"] = 'regular'
             
-                tag["id"] = element.attrib["id"]
-                tag["value"] = child.attrib["v"]
+                if child.attrib["k"] == 'addr:street':
+                    tag["value"] = update_name(child.attrib["v"], mapping)
+                elif child.attrib["k"] == 'addr:postcode':
+                    tag["value"] = update_zip(child.attrib["v"])
+                else:
+                    tag["value"] = child.attrib["v"]
             else:
-                tag["value"] = child.attrib["v"]
+                if child.attrib["k"] == 'addr:street':
+                    tag["value"] = update_name(child.attrib["v"], mapping)
+                elif child.attrib["k"] == 'addr:postcode':
+                    tag["value"] = update_zip(child.attrib["v"])
+                else:
+                    tag["value"] = child.attrib["v"]
                 tag["key"] = child.attrib["k"]
                 tag["type"] = "regular"
                 tag["id"] = element.attrib["id"]
